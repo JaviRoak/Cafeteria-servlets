@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cafetería - Prueba del Servlet</title>
+</head>
+<body>
+  <h1>Prueba de PedidoServlet</h1>
+  <p>Productos de prueba: id 3 = Café americano ($1.50, stock 10), id 7 = Croissant ($2.25, stock 1).</p>
+
+  <h2>1. Crear pedido (POST /pedidos)</h2>
+  <form action="pedidos" method="POST">
+    <input type="hidden" name="idCliente" value="15">
+
+    <label>Café americano (id 3):</label>
+    <input type="hidden" name="idProducto" value="3">
+    <input type="number" name="cantidad" value="2" min="1"><br>
+
+    <label>Croissant (id 7):</label>
+    <input type="hidden" name="idProducto" value="7">
+    <input type="number" name="cantidad" value="1" min="1"><br><br>
+
+    <button type="submit">Crear pedido</button>
+  </form>
+
+  <h2>2. Confirmar pedido (POST /pedidos/{id}/confirmar)</h2>
+  <form method="POST" onsubmit="this.action = 'pedidos/' + document.getElementById('id_pedido').value + '/confirmar'">
+    <label>Id del pedido:</label>
+    <input type="number" id="id_pedido" value="1" min="1">
+    <button type="submit">Confirmar</button>
+  </form>
+
+  <h2>3. Consultar pedido (GET /pedidos/{id})</h2>
+  <form onsubmit="event.preventDefault(); location.href = 'pedidos/' + document.getElementById('id_consulta').value">
+    <label>Id del pedido:</label>
+    <input type="number" id="id_consulta" value="1" min="1">
+    <button type="submit">Consultar</button>
+  </form>
+</body>
+</html>
